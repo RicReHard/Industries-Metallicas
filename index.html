@@ -71,6 +71,11 @@
   messagingSenderId: "424025623296",
   appId: "1:424025623296:web:35e5c9c8e113a2220601e5"
   };
+  const fecha = new Date().toLocaleString("es-CO", {
+  timeZone: "America/Bogota",
+  dateStyle: "short",
+  timeStyle: "short"
+});
   // Inicializar Firebase
   const app = firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
@@ -81,12 +86,16 @@ form.addEventListener("submit", function(e) {
   const nombre = document.getElementById("nombre").value.trim();
   const asistencia = document.getElementById("asistencia").value;
   const regalo = document.getElementById("regalo").value;
-
+  
   db.ref("confirmaciones").push({
     nombre,
     asistencia,
     regalo,
-    fecha: new Date().toISOString()
+    fecha: new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    dateStyle: "short",
+    timeStyle: "short"
+  })
   }).then(() => {
     alert("Datos enviados correctamente");
     form.reset();
@@ -98,6 +107,7 @@ form.addEventListener("submit", function(e) {
 </body>
   
 </html>
+
 
 
 
