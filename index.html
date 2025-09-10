@@ -20,12 +20,12 @@
     <form class="mt-6 text-left space-y-4">
       <label class="block">
         <span class="text-pink-600 font-medium">Tu nombre:</span>
-        <input type="text" class="w-full mt-1 p-2 border rounded-lg" required>
+        <input id="nombre" type="text" class="w-full mt-1 p-2 border rounded-lg" required>
       </label>
 
       <label class="block">
         <span class="text-pink-600 font-medium">¿Asistirás?</span>
-        <select class="w-full mt-1 p-2 border rounded-lg">
+        <select id="asistencia" class="w-full mt-1 p-2 border rounded-lg">
           <option>Sí, con mucho gusto 🎀</option>
           <option>No podré asistir 😔</option>
         </select>
@@ -33,7 +33,7 @@
 
       <label class="block">
         <span class="text-pink-600 font-medium">Selecciona un regalo 🎁:</span>
-        <select class="w-full mt-1 p-2 border rounded-lg">
+        <select id="regalo" class="w-full mt-1 p-2 border rounded-lg">
           <option>Obsequio + Etapa 0</option>
           <option>Obsequio + Etapa 1</option>
           <option>Obsequio + Etapa 2</option>
@@ -47,10 +47,56 @@
       <button class="w-full bg-pink-500 text-white py-2 rounded-xl shadow hover:bg-pink-600 transition">
         ENVIAR
       </button>
+
+      const firebaseConfig = {
+  apiKey: "AIzaSyAjbTQl2tI_3uoICp2WvZ22uJMrDT9jaWk",
+  authDomain: "confirmar-asistencia-b9d1e.firebaseapp.com",
+  projectId: "confirmar-asistencia-b9d1e",
+  storageBucket: "confirmar-asistencia-b9d1e.firebasestorage.app",
+  messagingSenderId: "424025623296",
+  appId: "1:424025623296:web:35e5c9c8e113a2220601e5"
+};
     </form>
   </div>
 </body>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyAjbTQl2tI_3uoICp2WvZ22uJMrDT9jaWk",
+  authDomain: "confirmar-asistencia-b9d1e.firebaseapp.com",
+  projectId: "confirmar-asistencia-b9d1e",
+  storageBucket: "confirmar-asistencia-b9d1e.firebasestorage.app",
+  messagingSenderId: "424025623296",
+  appId: "1:424025623296:web:35e5c9c8e113a2220601e5"
+  };
+  // Inicializar Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const form = document.querySelector("form");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const asistencia = document.getElementById("asistencia").value;
+  const regalo = document.getElementById("regalo").value;
+
+  db.ref("confirmaciones").push({
+    nombre,
+    asistencia,
+    regalo,
+    fecha: new Date().toISOString()
+  }).then(() => {
+    alert("Datos enviados correctamente");
+    form.reset();
+  }).catch((error) => {
+    alert("Error al enviar: " + error.message);
+  });
+});
+</script>
+  
 </html>
+
 
 
 
