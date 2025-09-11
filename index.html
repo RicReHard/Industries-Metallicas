@@ -112,11 +112,40 @@ form.addEventListener("submit", function(e) {
   }).catch((error) => {
     alert("Error al enviar: " + error.message);
   });
+});  
+
+      // Limite para la opción Etapa 0
+const limiteEtapa0 = 3;
+
+// Referencia al select de regalos
+const regaloSelect = document.getElementById("regalo");
+
+// Contar cuántas veces se ha escogido Etapa 0 en Firebase
+db.ref("confirmaciones").orderByChild("regalo").equalTo("Etapa 0").once("value", function(snapshot) {
+  const cantidad = snapshot.numChildren();
+
+  if (cantidad >= limiteEtapa0) {
+    // Reemplazar opción por una versión deshabilitada
+    const opcionAgotada = document.createElement("option");
+    opcionAgotada.value = "";
+    opcionAgotada.textContent = "Obsequio + Etapa 0 (Agotado)";
+    opcionAgotada.disabled = true;
+    opcionAgotada.selected = true;
+
+    // Limpiar y reemplazar
+    regaloSelect.innerHTML = "";
+    regaloSelect.appendChild(opcionAgotada);
+
+    // Puedes agregar otras opciones si quieres:
+    // regaloSelect.appendChild(...);
+  }
 });
+      
 </script>
 </body>
   
 </html>
+
 
 
 
