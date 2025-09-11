@@ -76,7 +76,6 @@ form.addEventListener("submit", function(e) {
   db.ref("confirmaciones").push({
     nombre,
     asistencia,
-    regalo,
     fecha: new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     dateStyle: "short",
@@ -93,6 +92,7 @@ form.addEventListener("submit", function(e) {
 </body>
   
 </html>
+
 
 
 
