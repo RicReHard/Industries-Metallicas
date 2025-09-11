@@ -15,7 +15,7 @@
     <div class="mt-4 bg-pink-100 rounded-lg p-4">
       <p class="text-gray-800"><b>📅 Fecha:</b> 5 de Octubre 2025</p>
       <p class="text-gray-800"><b>⏰ Hora:</b> 1:00 PM</p>
-      <p class="text-gray-800"><b>📍 Lugar:</b> Cra 93 C 42F - 58 SUR</p>
+      <p class="text-gray-800"><b>📍 Lugar:</b> Cra 93 C 42F - 58 Sur Barrio Dindalito</p>
     </div>
 
     <form class="mt-6 text-left space-y-4">
@@ -71,7 +71,6 @@ form.addEventListener("submit", function(e) {
 
   const nombre = document.getElementById("nombre").value.trim();
   const asistencia = document.getElementById("asistencia").value;
-  const regalo = document.getElementById("regalo").value;
   
   db.ref("confirmaciones").push({
     nombre,
@@ -92,6 +91,7 @@ form.addEventListener("submit", function(e) {
 </body>
   
 </html>
+
 
 
 
