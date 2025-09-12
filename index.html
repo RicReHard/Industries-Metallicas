@@ -31,7 +31,7 @@
 
     <form class="mt-6 text-left space-y-4">
       <label class="block">
-        <span class="text-pink-600 font-medium">Tu nombre:</span>
+        <span class="text-pink-600 font-medium">Tu nombre(Familia):</span>
         
         <input id="nombre" type="text" class="w-full mt-1 p-2 border rounded-lg" required>
         
@@ -45,6 +45,17 @@
           <option>No podré asistir 😔</option>
         </select>
 
+         <span class="text-pink-600 font-medium">¿Cuántas personas asistirán?:</span>
+        <select id="integrantes" class="w-full mt-1 p-2 border rounded-lg">
+          <option>1 Persona</option>
+          <option>2 Personas</option>
+          <option>3 Personas</option>
+          <option>4 Personas</option>
+          <option>5 Personas</option>
+          <option>6 Personas</option>
+          <option>7 Personas</option>
+        </select>
+        
         <label class="block">
         <span class="text-pink-600 font-medium">Selecciona un regalo 🎁:</span>
         <select id="regalo" class="w-full mt-1 p-2 border rounded-lg">
@@ -96,11 +107,13 @@ form.addEventListener("submit", function(e) {
   const nombre = document.getElementById("nombre").value.trim();
   const asistencia = document.getElementById("asistencia").value;
   const regalo = document.getElementById("regalo").value;
+   const integrantes = document.getElementById("integrantes").value;
   
   db.ref("confirmaciones").push({
     nombre,
     asistencia,
     regalo,
+    integrantes,
     fecha: new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     dateStyle: "short",
@@ -145,6 +158,7 @@ db.ref("confirmaciones").orderByChild("regalo").equalTo("Etapa 0").once("value",
 </body>
   
 </html>
+
 
 
 
