@@ -45,6 +45,11 @@ header nav{
 
 }
 
+#logo{
+    width: 100%;
+    heigth: 20px;
+}
+
 nav ul{
     display: flex;   
 }
@@ -432,3 +437,4 @@ main #section1{
 #section3 .card-vertical:hover p{
     color: #ffffff;
 }
+
